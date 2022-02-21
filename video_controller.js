@@ -6,11 +6,11 @@ function registerMessageListener([video]) {
     console.log(LOGTAG, message, 'from', sender);
     switch (message) {
       case 'PLAY':
-        console.log(LOGTAG, 'playing', video);
+        console.log(LOGTAG, message, video);
         video.play()
         break
       case 'PAUSE':
-        console.log(LOGTAG, 'pausing', video);
+        console.log(LOGTAG, message, video);
         video.pause()
         break
       default:
@@ -20,10 +20,18 @@ function registerMessageListener([video]) {
   chrome.runtime.onMessage.addListener(messageDispatcher);
 }
 
-const videos = document.querySelectorAll('video[src]')
-if (videos.length == 1) {
-  registerMessageListener(videos)
-  chrome.runtime.sendMessage(['CHECK_IN'])
-} else {
-  console.warn(LOGTAG, 'found', videos.length, 'videos')
+function findVideoElement() {
+  const videos = document.querySelectorAll('video[src]')
+  if (videos.length == 1) {
+    chrome.runtime.sendMessage(['CHECK_IN'])
+    return videos[0]
+  } else {
+    console.warn(LOGTAG, 'found', videos.length, 'videos')
+    return null
+  }
+}
+
+let video = findVideoElement()
+if (video) {
+  registerMessageListener(video)
 }
