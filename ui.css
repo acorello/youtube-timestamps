@@ -1,13 +1,15 @@
 div#main {
-  width: 60em;
+  width: 8cm;
+  height: 12cm;
 }
+
 button {
-  height: 20px;
-  width: 30px;
+  height: 1cm;
+  width: 1cm;
   outline: none;
   margin: 10px;
-  border: 1px solid black;
-  border-radius: 2px;
+  border: 1mm solid black;
+  border-radius: 5mm;
 }
 
 button.current {
