@@ -6,11 +6,11 @@ const myTabs = {}
 chrome.commands.onCommand.addListener(commandDispatcher)
 chrome.runtime.onMessage.addListener(dispatchMessages)
 
-function dispatchMessages([message, ...args], sender, _sendResponse) {
+function dispatchMessages([message, args], sender, _sendResponse) {
   console.log(LOGTAG, message, 'from', sender.url)
   switch (message) {
     case 'CHECK_IN':
-      checkIn(sender); break
+      checkIn(sender, args); break
     case 'PLAY_PLEASE':
       play(args); break
     case 'PAUSE_PLEASE':
@@ -20,18 +20,18 @@ function dispatchMessages([message, ...args], sender, _sendResponse) {
   }
 }
 
-function play([{ tabId, url }]) {
+function play({ tabId, url }) {
   console.log(LOGTAG, 'play', tabId, url)
   chrome.tabs.sendMessage(tabId, ['PLAY'])
 }
 
-function pause([{ tabId, url }]) {
+function pause({ tabId, url }) {
   console.log(LOGTAG, 'pause', tabId, url)
   chrome.tabs.sendMessage(tabId, ['PAUSE'])
 }
 
-function checkIn({ tab: { id: tabId, title, url, windowId } }) {
-  myTabs[tabId] = { tabId, title, url, windowId }
+function checkIn({ tab: { id: tabId, title, url, windowId } }, { duration }) {
+  myTabs[tabId] = { tabId, title, url, windowId, duration }
   console.log(LOGTAG, 'checked in', myTabs[tabId])
 }
 
