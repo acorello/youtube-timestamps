@@ -9,7 +9,7 @@
     "scripting"
   ],
   "background": {
-    "service_worker": "/backend.js"
+    "service_worker": "/service_worker.js"
   },
   "action": {
     "default_popup": "action.html",
