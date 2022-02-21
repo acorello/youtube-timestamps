@@ -12,7 +12,7 @@
     "service_worker": "/service_worker.js"
   },
   "action": {
-    "default_popup": "ui.html",
+    "default_popup": "ui/page.html",
     "default_icon": {
       "16": "/images/icon_16.png",
       "32": "/images/icon_32.png",
@@ -40,9 +40,9 @@
     }
   },
   "icons": {
-    "16": "/images/icon_16.png",
-    "32": "/images/icon_32.png",
-    "48": "/images/icon_48.png",
-    "128": "/images/icon_128.png"
+    "16": "/ui/images/icon_16.png",
+    "32": "/ui/images/icon_32.png",
+    "48": "/ui/images/icon_48.png",
+    "128": "/ui/images/icon_128.png"
   }
 }
